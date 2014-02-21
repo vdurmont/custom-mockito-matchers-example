@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static com.github.vdurmont.AuthorMatcher.authorIs;
+import static com.github.vdurmont.AuthorNameMatcher.authorNameStartsWith;
 import static com.github.vdurmont.MaleMatcher.authorIsAMale;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
@@ -46,7 +46,7 @@ public class MyServiceTest {
 	}
 
 	@Test
-	public void doStuff_sends_a_message_from_the_given_author() {
+	public void doStuff_sends_a_message_from_the_an_author_whose_name_starts_with_V() {
 		// GIVEN
 		MessageService mockMessageService = mock(MessageService.class);
 		MyService service = new MyService(mockMessageService);
@@ -57,6 +57,6 @@ public class MyServiceTest {
 		service.doStuff(author);
 
 		// THEN
-		verify(mockMessageService).send(authorIs(author));
+		verify(mockMessageService).send(authorNameStartsWith("v"));
 	}
 }
